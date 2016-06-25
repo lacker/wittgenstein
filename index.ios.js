@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -37,20 +31,32 @@ class Wittgenstein extends Component {
     };
   }
 
-  press() {
-    console.log('press');
+  record() {
+    console.log('record');
   }
 
-  // TODO: make 'record' and 'play' buttons
+  play() {
+    console.log('play');
+  }
+
   render() {
     return (
-      <TouchableHighlight
-        style={styles.container}
-        onPress={() => this.press()}>
-        <Text style={styles.text}>
-          Say something. Like "taco"
-        </Text>
-      </TouchableHighlight>
+      <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.record()}>
+          <Text style={styles.text}>
+            Record
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.play()}>
+          <Text style={styles.text}>
+            Play
+          </Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
