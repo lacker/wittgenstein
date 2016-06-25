@@ -13,7 +13,30 @@ import {
   View,
 } from 'react-native';
 
+// For the API see the react-native-audio example at
+// https://github.com/jsierles/react-native-audio/blob/master/AudioExample/index.ios.js
+import {AudioRecorder, AudioUtils} from 'react-native-audio';
+
 class Wittgenstein extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      currentTime: 0,
+      finished: false,
+    };
+
+    let audioPath = AudioUtils.DocumentDirectoryPath + '/test.caf';
+    AudioRecorder.prepareRecordingAtPath(audioPath);
+    AudioRecorder.onProgress = (data) => {
+      this.setState({currentTime: Math.floor(data.currentTime)});
+    };
+    AudioRecorder.onFinished = (data) => {
+      this.setState({finished: data.finished});
+      console.log(`Finished recording: ${data.finished}`);
+    };
+  }
+
   press() {
     console.log('press');
   }
