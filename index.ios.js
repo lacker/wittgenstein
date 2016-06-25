@@ -41,6 +41,7 @@ class Wittgenstein extends Component {
     console.log('press');
   }
 
+  // TODO: make 'record' and 'play' buttons
   render() {
     return (
       <TouchableHighlight
