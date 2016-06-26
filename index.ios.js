@@ -65,10 +65,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
+  },
+  button: {
+    flex: 1,
+    justifyContent: 'center',
+    borderWidth: 1,
   },
   text: {
-    fontSize: 20,
+    fontSize: 80,
     textAlign: 'center',
     margin: 10,
   },
