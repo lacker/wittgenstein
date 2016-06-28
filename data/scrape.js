@@ -1,4 +1,6 @@
-// A scraper to gather emoji data
+// A scraper to gather emoji data.
+// Redirect this to emoji.json
+
 const fetch = require('isomorphic-fetch');
 
 const url = 'http://unicode.org/emoji/charts/full-emoji-list.html';
@@ -39,4 +41,3 @@ fetch(url).then(response => response.text()).then(body => {
   flushBuffer();
 });
 
-console.log('scraping...');
