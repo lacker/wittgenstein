@@ -17,4 +17,18 @@ for (let entry of data) {
   }
 }
 
-// TODO: do something with the loaded data
+function choice(alist) {
+  return alist[Math.floor(Math.random() * alist.length)];
+}
+
+export default function find(word) {
+  if (byName[word]) {
+    return byName[word];
+  }
+  if (byKeyword[word]) {
+    let list = byKeyword[word];
+    return choice(list);
+  }
+  return byName['confused face'];
+}
+
