@@ -30,13 +30,35 @@ function choice(alist) {
   return alist[Math.floor(Math.random() * alist.length)];
 }
 
+function union(a, b) {
+  let s = new Set(a);
+  return b.filter(x => s.has(x));
+}
+
+function intersect(a, b) {
+  let s = new Set(a);
+  for (let x of b) {
+    s.add(x);
+  }
+  return [...s];
+}
+
+// Works on exact names and single words
 export default function find(word) {
   if (byName[word]) {
     return byName[word];
   }
-  if (byKeyword[word]) {
-    let list = byKeyword[word];
-    return choice(list);
+  let body = byKeyword[word] || [];
+  let title = byNameTerm[word] || [];
+  let u = union(body, title);
+  if (u.length > 0) {
+    return choice(u);
+  }
+  if (body.length > 0) {
+    return choice(body);
+  }
+  if (title.length > 0) {
+    return choice(title);
   }
   return byName['confused face'];
 }
