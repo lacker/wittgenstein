@@ -82,6 +82,13 @@ class Wittgenstein extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
+          onPress={() => this.stop()}>
+          <Text style={styles.text}>
+            Stop
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
           onPress={() => this.play()}>
           <Text style={styles.text}>
             Play
@@ -97,6 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
+    marginTop: 10,
   },
   button: {
     flex: 1,
