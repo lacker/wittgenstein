@@ -35,11 +35,14 @@ class Wittgenstein extends Component {
   record() {
     console.log('record');
     this.setState({status: 'recording'});
+    AudioRecorder.startRecording();
   }
 
   play() {
     console.log('play');
     this.setState({status: 'playing'});
+    AudioRecorder.stopRecording();
+    AudioRecorder.playRecording();
   }
 
   render() {
