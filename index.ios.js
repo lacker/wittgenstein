@@ -18,7 +18,8 @@ class Wittgenstein extends Component {
     this.state = {
       currentTime: 0,
       finished: false,
-      status: 'doing nothing',
+      recording: false,
+      playing: false,
     };
 
     let audioPath = AudioUtils.DocumentDirectoryPath + '/test.caf';
@@ -32,17 +33,36 @@ class Wittgenstein extends Component {
     };
   }
 
+  status() {
+    if (this.state.recording) {
+      return 'recording';
+    }
+    if (this.state.playing) {
+      return 'playing';
+    }
+    return 'waiting';
+  }
+
+  stop() {
+    if (this.state.recording) {
+      AudioRecorder.stopRecording();
+    }
+    if (this.state.playing) {
+      AudioRecorder.stopPlaying();
+    }
+    this.setState({recording: false, playing: false});
+  }
+
   record() {
-    console.log('record');
-    this.setState({status: 'recording'});
+    this.stop();
     AudioRecorder.startRecording();
+    this.setState({recording: true});
   }
 
   play() {
-    console.log('play');
-    this.setState({status: 'playing'});
-    AudioRecorder.stopRecording();
+    this.stop();
     AudioRecorder.playRecording();
+    this.setState({playing: true});
   }
 
   render() {
@@ -50,7 +70,7 @@ class Wittgenstein extends Component {
       <View style={styles.container}>
         <View style={{flex: 0.2, justifyContent: 'center'}}>
           <Text style={{textAlign: 'center'}}>
-            {this.state.status}
+            {this.status()}
           </Text>
         </View>
         <TouchableHighlight
