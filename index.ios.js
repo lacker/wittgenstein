@@ -40,6 +40,9 @@ class Wittgenstein extends Component {
     if (this.state.playing) {
       return 'playing';
     }
+    if (this.state.currentTime) {
+      return 'currentTime: ' + this.state.currentTime;
+    }
     return 'waiting';
   }
 
