@@ -1,9 +1,10 @@
 //  BridgeTarget.h
 //  Wittgenstein
 
-#import "RCTBridgeModule.h"
+#import "RCTBridgeModule.h"
 
-@interface BridgeTarget : NSObject <RCTBridgeModule>
+@interface BridgeTarget : NSObject <RCTBridgeModule>
 
-@end
+@end
+
 

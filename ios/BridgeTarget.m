@@ -1,18 +1,15 @@
-//  BridgeTarget.m
-//  Wittgenstein
+// BridgeTarget.m
 
-#import "BridgeTarget.h"
+#import "BridgeTarget.h"
 
-@implementation BridgeTarget
+@implementation BridgeTarget
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
-{
-  // Change this depending on what you want to retrieve:
-  NSString* someString = @"something";
+RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback) {
+  NSString* response = @"hello bridging world";
   
-  callback(@[someString]);
-}
+  callback(@[response]);
+}
 
-@end
+@end
