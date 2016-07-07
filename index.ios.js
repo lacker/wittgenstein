@@ -11,6 +11,12 @@ import {
 // https://github.com/jsierles/react-native-audio/blob/master/AudioExample/index.ios.js
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
+const bt = require('NativeModules').BridgeTarget;
+bt.get(x => {
+  console.log(x);
+});
+
+
 class Wittgenstein extends Component {
   constructor(props) {
     super(props)
