@@ -12,7 +12,9 @@ import {
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
 const bt = require('NativeModules').BridgeTarget;
-bt.get(x => {
+
+const audioPath = AudioUtils.DocumentDirectoryPath + '/test.caf';
+bt.get(audioPath, x => {
   console.log(x);
 });
 
@@ -28,7 +30,6 @@ class Wittgenstein extends Component {
       playing: false,
     };
 
-    let audioPath = AudioUtils.DocumentDirectoryPath + '/test.caf';
     AudioRecorder.prepareRecordingAtPath(audioPath);
     AudioRecorder.onProgress = (data) => {
       this.setState({currentTime: Math.floor(data.currentTime)});

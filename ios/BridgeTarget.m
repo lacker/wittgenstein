@@ -6,8 +6,8 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback) {
-  NSString* response = @"hello bridging world";
+RCT_EXPORT_METHOD(get:(NSString*)filename withCallback:(RCTResponseSenderBlock)callback) {
+  NSString* response = [NSString stringWithFormat:@"got filename: %@", filename];
   
   callback(@[response]);
 }
