@@ -7,7 +7,10 @@
 RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(get:(NSString*)filename withCallback:(RCTResponseSenderBlock)callback) {
-  NSString* response = [NSString stringWithFormat:@"got filename: %@", filename];
+
+  unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:filename error:nil] fileSize];
+  
+  NSString* response = [NSString stringWithFormat:@"got filename: %@ with size: %llu", filename, fileSize];
   
   callback(@[response]);
 }
