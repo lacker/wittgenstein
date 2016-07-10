@@ -40,7 +40,11 @@ class Wittgenstein extends Component {
     };
   }
 
-  status() {
+  log(message) {
+    this.setState({message});
+  }
+
+  coreStatus() {
     if (this.state.recording) {
       return 'recording';
     }
@@ -51,6 +55,13 @@ class Wittgenstein extends Component {
       return 'currentTime: ' + this.state.currentTime;
     }
     return 'waiting';
+  }
+
+  status() {
+    if (this.state.message) {
+      return this.coreStatus() + ' ' + this.state.message;
+    }
+    return this.coreStatus();
   }
 
   stop() {
