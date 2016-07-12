@@ -14,9 +14,13 @@ import {AudioRecorder, AudioUtils} from 'react-native-audio';
 const bt = require('NativeModules').BridgeTarget;
 
 const audioPath = AudioUtils.DocumentDirectoryPath + '/test.caf';
-bt.get(audioPath, x => {
-  console.log(x);
-});
+
+// Returns a promise for dealing with stats
+function getStats() {
+  return new Promise((fulfill, reject) => {
+    bt.get(audioPath, fulfill);
+  });
+}
 
 
 class Wittgenstein extends Component {
@@ -72,6 +76,10 @@ class Wittgenstein extends Component {
       AudioRecorder.stopPlaying();
     }
     this.setState({recording: false, playing: false});
+
+    getStats().then(stats => {
+      this.log('fileSize: ' + stats.fileSize);
+    });
   }
 
   record() {
