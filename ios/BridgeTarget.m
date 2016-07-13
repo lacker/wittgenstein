@@ -12,7 +12,9 @@ RCT_EXPORT_METHOD(get:(NSString*)filename withCallback:(RCTResponseSenderBlock)c
 
   unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:filename error:nil] fileSize];
   
-  NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"fileSize", fileSize, nil];
+  NSMutableDictionary *response = [NSMutableDictionary dictionary];
+  
+  [response setObject:[NSNumber numberWithLongLong:fileSize] forKey:@"fileSize"];
   
   callback(@[response]);
 }
