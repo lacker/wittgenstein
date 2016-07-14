@@ -14,6 +14,16 @@ RCT_EXPORT_METHOD(get:(NSString*)filename withCallback:(RCTResponseSenderBlock)c
   
   NSMutableDictionary *response = [NSMutableDictionary dictionary];
   
+  
+  NSURL *fileURL = [NSURL fileURLWithPath:filename];
+  ExtAudioFileRef eaf;
+  OSStatus err = ExtAudioFileOpenURL((__bridge CFURLRef)fileURL, &eaf);
+  
+  if (err) {
+    [response setObject:[NSNumber numberWithInt:err] forKey:@"error"];
+  }
+  
+  
   [response setObject:[NSNumber numberWithLongLong:fileSize] forKey:@"fileSize"];
   
   callback(@[response]);
